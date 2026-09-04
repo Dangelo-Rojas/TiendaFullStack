@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Casas Embrujadas | Mansión Victoriana</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <header class="encabezado">
+    <div class="contenedor barra-navegacion">
+      <a href="index.html" class="logo">Casas Embrujadas</a>
+      <nav>
+        <ul class="menu-principal">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="productos.html">Propiedades</a></li>
+          <li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="blogs.html">Blogs</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+      <div class="acciones-usuario">
+        <a href="login.html">Iniciar sesión</a>
+        <a href="registro.html">Registrarse</a>
+        <span class="carrito">🛒 Carrito (0)</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="contenedor">
+
+    <p style="margin-top:20px;">
+      <a href="index.html">Home</a> &gt;
+      <a href="productos.html">Propiedades</a> &gt;
+      Mansión Victoriana
+    </p>
+
+
+    <div class="detalle-producto">
+
+      <div class="galeria">
+
+        <img class="imagen-principal" src="img/mansion-victoriana-grande.jpg" alt="Vista frontal de la Mansión Victoriana embrujada">
+
+        <div class="miniaturas">
+          <img src="img/mansion-victoriana-2.jpg" alt="Interior del salón principal de la mansión">
+          <img src="img/mansion-victoriana-3.jpg" alt="Escalera principal de la mansión">
+          <img src="img/mansion-victoriana-4.jpg" alt="Jardín trasero de la mansión">
+        </div>
+      </div>
+
+      <div class="info">
+        <h1>Mansión Victoriana</h1>
+        <p class="precio-grande">$185.000.000</p>
+
+        <p>
+          Impresionante mansión de estilo victoriano construida en 1899.
+          Cuenta con 8 habitaciones, una escalera principal que cruje
+          exactamente a las 3:00 AM, y un retrato en el pasillo cuyos
+          ojos siguen a las visitas. Ideal para quienes buscan
+          tranquilidad... eterna.
+        </p>
+
+        <div class="selector-cantidad">
+          <label for="cantidad">Cantidad:</label>
+          <select id="cantidad" name="cantidad">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+        </div>
+
+
+        <button class="boton" type="button">Añadir al carrito</button>
+      </div>
+
+    </div>
+
+    <h2 class="titulo-seccion">Productos relacionados</h2>
+    <div class="grilla">
+      <article class="tarjeta">
+        <img src="img/cabana-bosque.jpg" alt="Cabaña embrujada en el bosque">
+        <h3>Cabaña del Bosque Maldito</h3>
+        <p class="precio">$62.500.000</p>
+        <a href="detalle-producto.html" class="boton">Ver detalle</a>
+      </article>
+      <article class="tarjeta">
+        <img src="img/faro-abandonado.jpg" alt="Faro abandonado y embrujado junto al mar">
+        <h3>Faro del Ahogado</h3>
+        <p class="precio">$99.900.000</p>
+        <a href="detalle-producto.html" class="boton">Ver detalle</a>
+      </article>
+      <article class="tarjeta">
+        <img src="img/casona-colonial.jpg" alt="Casona colonial embrujada">
+        <h3>Casona Colonial</h3>
+        <p class="precio">$140.000.000</p>
+        <a href="detalle-producto.html" class="boton">Ver detalle</a>
+      </article>
+    </div>
+
+  </main>
+
+  <footer class="pie-pagina">
+    <div class="contenedor">
+      <p>Casas Embrujadas — Propiedades con historia desde 1899</p>
+      <p>&copy; 2026 Casas Embrujadas. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
