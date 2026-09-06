@@ -24,7 +24,7 @@
       <div class="acciones-usuario">
         <a href="login.html">Iniciar sesión</a>
         <a href="registro.html">Registrarse</a>
-        <span class="carrito">🛒 Carrito (0)</span>
+        <a href="carrito.html" class="carrito">🛒 Carrito (0)</a>
       </div>
     </div>
   </header>
@@ -39,8 +39,8 @@
         <h3>Mansión Victoriana</h3>
         <p class="atributo">Ubicación: Valparaíso</p>
         <p class="precio">$185.000.000</p>
-        <a href="detalle-producto.html" class="boton">Ver detalle</a>
-        <button class="boton" type="button">Añadir</button>
+        <a href="detalle-producto.html?id=mansion-victoriana" class="boton">Ver detalle</a>
+        <button class="boton" type="button" data-id="mansion-victoriana">Añadir</button>
       </article>
 
       <article class="tarjeta">
@@ -48,8 +48,8 @@
         <h3>Cabaña del Bosque Maldito</h3>
         <p class="atributo">Ubicación: Región de la Araucanía</p>
         <p class="precio">$62.500.000</p>
-        <a href="detalle-producto.html" class="boton">Ver detalle</a>
-        <button class="boton" type="button">Añadir</button>
+        <a href="detalle-producto.html?id=cabana-bosque" class="boton">Ver detalle</a>
+        <button class="boton" type="button" data-id="cabana-bosque">Añadir</button>
       </article>
 
       <article class="tarjeta">
@@ -57,8 +57,8 @@
         <h3>Faro del Ahogado</h3>
         <p class="atributo">Ubicación: Costa de Ñuble</p>
         <p class="precio">$99.900.000</p>
-        <a href="detalle-producto.html" class="boton">Ver detalle</a>
-        <button class="boton" type="button">Añadir</button>
+        <a href="detalle-producto.html?id=faro-ahogado" class="boton">Ver detalle</a>
+        <button class="boton" type="button" data-id="faro-ahogado">Añadir</button>
       </article>
 
       <article class="tarjeta">
@@ -66,8 +66,8 @@
         <h3>Casona Colonial</h3>
         <p class="atributo">Ubicación: Región Metropolitana</p>
         <p class="precio">$140.000.000</p>
-        <a href="detalle-producto.html" class="boton">Ver detalle</a>
-        <button class="boton" type="button">Añadir</button>
+        <a href="detalle-producto.html?id=casona-colonial" class="boton">Ver detalle</a>
+        <button class="boton" type="button" data-id="casona-colonial">Añadir</button>
       </article>
 
       <article class="tarjeta">
@@ -75,8 +75,8 @@
         <h3>Ex Hospital San Judas</h3>
         <p class="atributo">Ubicación: Concepción</p>
         <p class="precio">$210.000.000</p>
-        <a href="detalle-producto.html" class="boton">Ver detalle</a>
-        <button class="boton" type="button">Añadir</button>
+        <a href="detalle-producto.html?id=hospital-san-judas" class="boton">Ver detalle</a>
+        <button class="boton" type="button" data-id="hospital-san-judas">Añadir</button>
       </article>
 
       <article class="tarjeta">
@@ -84,8 +84,8 @@
         <h3>Castillo de la Niebla</h3>
         <p class="atributo">Ubicación: Región de Los Lagos</p>
         <p class="precio">$320.000.000</p>
-        <a href="detalle-producto.html" class="boton">Ver detalle</a>
-        <button class="boton" type="button">Añadir</button>
+        <a href="detalle-producto.html?id=castillo-niebla" class="boton">Ver detalle</a>
+        <button class="boton" type="button" data-id="castillo-niebla">Añadir</button>
       </article>
 
     </div>
@@ -98,5 +98,7 @@
     </div>
   </footer>
 
+  <script src="scripts/productos-data.js"></script>
+  <script src="scripts/carrito.js"></script>
 </body>
 </html>

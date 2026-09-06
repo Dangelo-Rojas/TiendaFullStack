@@ -24,7 +24,7 @@
       <div class="acciones-usuario">
         <a href="login.html">Iniciar sesión</a>
         <a href="registro.html">Registrarse</a>
-        <span class="carrito">🛒 Carrito (0)</span>
+        <a href="carrito.html" class="carrito">🛒 Carrito (0)</a>
       </div>
     </div>
   </header>
@@ -34,7 +34,7 @@
     <p style="margin-top:20px;">
       <a href="index.html">Home</a> &gt;
       <a href="productos.html">Propiedades</a> &gt;
-      Mansión Victoriana
+      <span id="breadcrumb-nombre">Mansión Victoriana</span>
     </p>
 
 
@@ -42,9 +42,9 @@
 
       <div class="galeria">
 
-        <img class="imagen-principal" src="img/mansion-victoriana-grande.jpg" alt="Vista frontal de la Mansión Victoriana embrujada">
+        <img class="imagen-principal" id="imagen-principal" src="img/mansion-victoriana-grande.jpg" alt="Vista frontal de la Mansión Victoriana embrujada">
 
-        <div class="miniaturas">
+        <div class="miniaturas" id="miniaturas">
           <img src="img/mansion-victoriana-2.jpg" alt="Interior del salón principal de la mansión">
           <img src="img/mansion-victoriana-3.jpg" alt="Escalera principal de la mansión">
           <img src="img/mansion-victoriana-4.jpg" alt="Jardín trasero de la mansión">
@@ -52,10 +52,10 @@
       </div>
 
       <div class="info">
-        <h1>Mansión Victoriana</h1>
-        <p class="precio-grande">$185.000.000</p>
+        <h1 id="nombre-propiedad">Mansión Victoriana</h1>
+        <p class="precio-grande" id="precio-propiedad">$185.000.000</p>
 
-        <p>
+        <p id="descripcion-propiedad">
           Impresionante mansión de estilo victoriano construida en 1899.
           Cuenta con 8 habitaciones, una escalera principal que cruje
           exactamente a las 3:00 AM, y un retrato en el pasillo cuyos
@@ -73,10 +73,16 @@
         </div>
 
 
-        <button class="boton" type="button">Añadir al carrito</button>
+        <button class="boton" type="button" id="btn-anadir" data-id="mansion-victoriana">Añadir al carrito</button>
       </div>
 
     </div>
+
+    <h2 class="titulo-seccion">Recorrido virtual</h2>
+    <video controls width="100%" poster="img/mansion-victoriana-grande.jpg" style="max-width:800px; display:block; margin:0 auto 30px;">
+      <source src="video/recorrido-mansion.mp4" type="video/mp4">
+      Tu navegador no soporta la reproducción de este video.
+    </video>
 
     <h2 class="titulo-seccion">Productos relacionados</h2>
     <div class="grilla">
@@ -84,19 +90,19 @@
         <img src="img/cabana-bosque.jpg" alt="Cabaña embrujada en el bosque">
         <h3>Cabaña del Bosque Maldito</h3>
         <p class="precio">$62.500.000</p>
-        <a href="detalle-producto.html" class="boton">Ver detalle</a>
+        <a href="detalle-producto.html?id=cabana-bosque" class="boton">Ver detalle</a>
       </article>
       <article class="tarjeta">
         <img src="img/faro-abandonado.jpg" alt="Faro abandonado y embrujado junto al mar">
         <h3>Faro del Ahogado</h3>
         <p class="precio">$99.900.000</p>
-        <a href="detalle-producto.html" class="boton">Ver detalle</a>
+        <a href="detalle-producto.html?id=faro-ahogado" class="boton">Ver detalle</a>
       </article>
       <article class="tarjeta">
         <img src="img/casona-colonial.jpg" alt="Casona colonial embrujada">
         <h3>Casona Colonial</h3>
         <p class="precio">$140.000.000</p>
-        <a href="detalle-producto.html" class="boton">Ver detalle</a>
+        <a href="detalle-producto.html?id=casona-colonial" class="boton">Ver detalle</a>
       </article>
     </div>
 
@@ -109,5 +115,8 @@
     </div>
   </footer>
 
+  <script src="scripts/productos-data.js"></script>
+  <script src="scripts/carrito.js"></script>
+  <script src="scripts/detalle.js"></script>
 </body>
 </html>
