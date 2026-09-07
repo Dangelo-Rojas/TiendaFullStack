@@ -6,7 +6,7 @@ const productos = [
     precio: "$185.000.000",
     imagen: "img/mansion-victoriana.jpg",
     imagenGrande: "img/mansion-victoriana-grande.jpg",
-    imagenes: ["img/mansion-victoriana-2.jpg", "img/mansion-victoriana-3.jpg", "img/mansion-victoriana-4.jpg"],
+    imagenes: ["img/mansion-victoriana-grande.jpg", "img/mansion-victoriana.jpg", "img/mansion-victoriana-grande.jpg"],
     descripcion: "Impresionante mansión de estilo victoriano construida en 1899. Cuenta con 8 habitaciones, una escalera principal que cruje exactamente a las 3:00 AM, y un retrato en el pasillo cuyos ojos siguen a las visitas. Ideal para quienes buscan tranquilidad... eterna."
   },
   {
