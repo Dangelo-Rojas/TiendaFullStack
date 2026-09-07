@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Casas Embrujadas | Contacto</title>
+  <title>Casas Embrujadas | Carrito</title>
   <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
@@ -30,34 +29,19 @@
   </header>
 
   <main class="contenedor">
-    <h1 class="titulo-seccion">Contáctanos</h1>
+    <h1 class="titulo-seccion">Tu carrito</h1>
 
-  
-    <form class="formulario" id="form-contacto" action="#" method="post" novalidate>
+    <div id="carrito-vacio" style="display:none;">
+      <p>Tu carrito está vacío... por ahora.</p>
+      <a href="productos.html" class="boton">Ver propiedades</a>
+    </div>
 
+    <div id="lista-carrito"></div>
 
-      <div class="campo">
-        <label for="nombre">Nombre completo</label>
-        <input type="text" id="nombre" name="nombre" maxlength="100" placeholder="Ej: Juan Pérez">
-        <span class="error" id="error-nombre"></span>
-      </div>
-
-      <div class="campo">
-        <label for="correo">Correo electrónico</label>
-
-        <input type="email" id="correo" name="correo" maxlength="100" placeholder="ejemplo@correo.com">
-        <span class="error" id="error-correo"></span>
-      </div>
-
-      <div class="campo">
-        <label for="mensaje">Mensaje</label>
-
-        <textarea id="mensaje" name="mensaje" rows="5" maxlength="500" placeholder="Cuéntanos en qué te podemos ayudar..."></textarea>
-        <span class="error" id="error-mensaje"></span>
-      </div>
-
-      <button type="submit" class="boton" style="width:100%;">Enviar mensaje</button>
-    </form>
+    <div id="carrito-resumen" style="display:none; margin-top:20px;">
+      <p class="precio-grande" id="carrito-total"></p>
+      <button class="boton" type="button" id="btn-vaciar">Vaciar carrito</button>
+    </div>
   </main>
 
   <footer class="pie-pagina">
@@ -67,7 +51,7 @@
     </div>
   </footer>
 
-  <script src="scripts/validaciones.js"></script>
-  <script src="scripts/contacto.js"></script>
+  <script src="scripts/productos-data.js"></script>
+  <script src="scripts/carrito.js"></script>
 </body>
 </html>

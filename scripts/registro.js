@@ -2,7 +2,7 @@
 const regionesComunas = {
   metropolitana: ["Santiago", "Puente Alto", "Maipú", "Providencia"],
   araucania: ["Temuco", "Villarrica", "Pucón"],
-  ñuble: ["Chillán", "San Carlos", "Bulnes"]
+  nuble: ["Chillán", "San Carlos", "Bulnes"]
 };
 
 document.getElementById("region").addEventListener("change", function () {
