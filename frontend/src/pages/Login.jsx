@@ -36,7 +36,7 @@ export default function Login() {
                 valor={datos.correo} onChange={handleChange} error={errores.correo} />
               <CampoFormulario etiqueta="Contraseña" nombre="contrasena" tipo="password"
                 valor={datos.contrasena} onChange={handleChange} error={errores.contrasena} />
-              <button type="submit" className="btn btn-warning w-100">Entrar</button>
+             <button type="submit" className="btn btn-warning w-100 mt-3">Entrar</button>
             </form>
 
             <p className="text-center mt-3 mb-0">

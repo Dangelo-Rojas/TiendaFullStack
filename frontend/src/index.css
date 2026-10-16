@@ -152,3 +152,183 @@ h1, h2, h3, .h1, .h2, .h3, .h4, .h5, .display-6,
   border-radius: 4px;
   flex-shrink: 0;
 }
+
+/* ==== Menú móvil: abrir y cerrar con animación ==== */
+@media (max-width: 991.98px) {
+  .navbar-collapse.collapse {
+    display: block;            /* siempre presente para poder animarlo */
+    max-height: 0;
+    overflow: hidden;
+    visibility: hidden;        /* evita que se pueda navegar con Tab estando cerrado */
+    transition: max-height 0.35s ease, visibility 0s linear 0.35s;
+  }
+  .navbar-collapse.collapse.show {
+    max-height: 400px;
+    visibility: visible;
+    transition: max-height 0.35s ease, visibility 0s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar-collapse.collapse {
+    transition: none;
+  }
+}
+
+/* ==== Tarjeta de propiedad ==== */
+.tarjeta-propiedad {
+  display: flex;
+  flex-direction: column;
+  background: #1e1626;
+  border: 1px solid #3a2647;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.tarjeta-propiedad:hover {
+  border-color: #ff7a1a;
+}
+.tarjeta-propiedad__imagen {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+.tarjeta-propiedad__imagen img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.tarjeta-propiedad:hover .tarjeta-propiedad__imagen img {
+  transform: scale(1.05);
+}
+.tarjeta-propiedad__ubicacion {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 2.5rem 0.9rem 0.6rem;
+  background: linear-gradient(transparent, rgba(20, 16, 26, 0.92));
+  color: #eae6f0;
+  font-size: 0.9rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tarjeta-propiedad__imagen img {
+    transition: none;
+  }
+}
+
+/* ==== Botones: estilo placa grabada ==== */
+.btn {
+  font-family: var(--fuente-titulos);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  border-radius: 2px;
+  --bs-btn-padding-x: 1.1rem;
+  transition: color 0.2s, background-color 0.2s, border-color 0.2s,
+              box-shadow 0.25s, outline-offset 0.25s;
+}
+.btn-lg {
+  --bs-btn-padding-x: 1.6rem;
+  --bs-btn-font-size: 1.3rem;
+}
+
+/* Principal: naranjo con marco exterior */
+.btn-warning {
+  font-weight: 400;
+}
+.btn-warning:not(.btn-sm) {
+  outline: 1px solid rgba(255, 122, 26, 0.55);
+  outline-offset: 3px;
+}
+.btn-warning:hover {
+  box-shadow: 0 0 18px rgba(255, 122, 26, 0.45);
+}
+.btn-warning:not(.btn-sm):hover {
+  outline-offset: 5px;
+}
+
+/* Secundarios: transparentes con borde lavanda */
+.btn-outline-light,
+.btn-outline-dark {
+  --bs-btn-color: #eae6f0;
+  --bs-btn-border-color: #8a7a9c;
+  --bs-btn-bg: transparent;
+  --bs-btn-hover-color: #ff7a1a;
+  --bs-btn-hover-bg: rgba(255, 122, 26, 0.08);
+  --bs-btn-hover-border-color: #ff7a1a;
+  --bs-btn-active-color: #ff7a1a;
+  --bs-btn-active-bg: rgba(255, 122, 26, 0.15);
+  --bs-btn-active-border-color: #ff7a1a;
+}
+
+/* Foco visible con teclado (accesibilidad) */
+.btn:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+  box-shadow: none;
+}
+
+/* ==== Enlace con subrayado que se alarga ==== */
+.btn-enlace {
+  display: inline-block;
+  position: relative;
+  padding: 0.25rem 0 0.45rem;
+  font-family: var(--fuente-titulos);
+  font-size: 1.4rem;
+  color: #ff7a1a;
+  text-decoration: none;
+  background: none;
+  border: 0;
+}
+.btn-enlace::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40%;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.35s ease;
+}
+.btn-enlace:hover,
+.btn-enlace:focus-visible {
+  color: #ff9a4d;
+}
+.btn-enlace:hover::after,
+.btn-enlace:focus-visible::after {
+  width: 100%;
+}
+.btn-enlace:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 4px;
+}
+
+/* Variantes */
+.btn-enlace.secundario {
+  color: #eae6f0;
+}
+.btn-enlace.secundario:hover {
+  color: #ff7a1a;
+}
+.btn-enlace.chico {
+  font-size: 1.1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-enlace::after {
+    transition: none;
+  }
+}
+
+/* ==== Formularios: foco con la paleta del sitio ==== */
+.form-control:focus,
+.form-select:focus {
+  border-color: #ff7a1a;
+  box-shadow: 0 0 0 0.2rem rgba(255, 122, 26, 0.25);
+}
+.form-control.is-invalid:focus,
+.form-select.is-invalid:focus {
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.3);
+}

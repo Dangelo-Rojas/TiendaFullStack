@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useCarrito } from '../context/CarritoContext';
 
@@ -11,33 +12,36 @@ const enlaces = [
 
 export default function Navbar() {
   const { cantidad } = useCarrito();
+  const [menuAbierto, setMenuAbierto] = useState(false);
+
+  const cerrarMenu = () => setMenuAbierto(false);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div className="container">
-        <Link className="navbar-brand" to="/">👻 Casas Embrujadas</Link>
+      <div className="container-fluid px-3 px-lg-5">
+        <Link className="navbar-brand" to="/" onClick={cerrarMenu}>👻 Casas Embrujadas</Link>
 
         <button
           className="navbar-toggler" type="button"
-          data-bs-toggle="collapse" data-bs-target="#menu"
-          aria-controls="menu" aria-expanded="false" aria-label="Abrir menú"
+          aria-controls="menu" aria-expanded={menuAbierto} aria-label="Abrir menú"
+          onClick={() => setMenuAbierto(!menuAbierto)}
         >
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className="collapse navbar-collapse" id="menu">
+        <div className={`collapse navbar-collapse ${menuAbierto ? 'show' : ''}`} id="menu">
           <ul className="navbar-nav me-auto">
             {enlaces.map((e) => (
               <li className="nav-item" key={e.ruta}>
-                <NavLink className="nav-link" to={e.ruta} end>{e.texto}</NavLink>
+                <NavLink className="nav-link" to={e.ruta} end onClick={cerrarMenu}>{e.texto}</NavLink>
               </li>
             ))}
           </ul>
 
-          <div className="d-flex gap-2">
-            <Link className="btn btn-outline-light btn-sm" to="/login">Iniciar sesión</Link>
-            <Link className="btn btn-outline-light btn-sm" to="/registro">Registrarse</Link>
-            <Link className="btn btn-warning btn-sm" to="/carrito">🛒 Carrito ({cantidad})</Link>
+          <div className="d-flex flex-wrap gap-2 pb-2 pb-lg-0">
+            <Link className="btn btn-outline-light btn-sm" to="/login" onClick={cerrarMenu}>Iniciar sesión</Link>
+            <Link className="btn btn-outline-light btn-sm" to="/registro" onClick={cerrarMenu}>Registrarse</Link>
+            <Link className="btn btn-warning btn-sm" to="/carrito" onClick={cerrarMenu}>🛒 Carrito ({cantidad})</Link>
           </div>
         </div>
       </div>

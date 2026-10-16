@@ -45,19 +45,19 @@ export default function Registro() {
             {exito && <div className="alert alert-success">¡Registro exitoso! Bienvenido al más allá.</div>}
 
             <form onSubmit={handleSubmit} noValidate>
-              <CampoFormulario etiqueta="Nombre completo" nombre="nombre"
+              <CampoFormulario etiqueta="Nombre completo." nombre="nombre"
                 valor={datos.nombre} onChange={handleChange} error={errores.nombre} />
 
-              <CampoFormulario etiqueta="Correo" nombre="correo" tipo="email"
+              <CampoFormulario etiqueta="Correo." nombre="correo" tipo="email"
                 valor={datos.correo} onChange={handleChange} error={errores.correo} />
 
-              <CampoFormulario etiqueta="Confirmar correo" nombre="confirmarCorreo" tipo="email"
+              <CampoFormulario etiqueta="Confirmar correo." nombre="confirmarCorreo" tipo="email"
                 valor={datos.confirmarCorreo} onChange={handleChange} error={errores.confirmarCorreo} />
 
-              <CampoFormulario etiqueta="Contraseña" nombre="contrasena" tipo="password"
+              <CampoFormulario etiqueta="Contraseña." nombre="contrasena" tipo="password"
                 valor={datos.contrasena} onChange={handleChange} error={errores.contrasena} />
 
-              <CampoFormulario etiqueta="Confirmar contraseña" nombre="confirmarContrasena" tipo="password"
+              <CampoFormulario etiqueta="Confirmar contraseña." nombre="confirmarContrasena" tipo="password"
                 valor={datos.confirmarContrasena} onChange={handleChange} error={errores.confirmarContrasena} />
 
               <div className="row">
@@ -65,7 +65,7 @@ export default function Registro() {
                   <label htmlFor="region" className="form-label">Región</label>
                   <select id="region" name="region" value={datos.region} onChange={handleChange}
                     className={`form-select ${errores.region ? 'is-invalid' : ''}`}>
-                    <option value="">-- Seleccione --</option>
+                    <option value="">Seleccionar</option>
                     <option value="metropolitana">Metropolitana</option>
                     <option value="araucania">Araucanía</option>
                     <option value="nuble">Ñuble</option>
@@ -79,7 +79,7 @@ export default function Registro() {
                     disabled={!datos.region}
                     className={`form-select ${errores.comuna ? 'is-invalid' : ''}`}>
                     <option value="">
-                      {datos.region ? '-- Seleccione --' : '-- Primero elija región --'}
+                      {datos.region ? 'Seleccione' : 'Elija una región'}
                     </option>
                     {obtenerComunas(datos.region).map((c) => (
                       <option key={c} value={c.toLowerCase()}>{c}</option>
@@ -89,7 +89,7 @@ export default function Registro() {
                 </div>
               </div>
 
-              <button type="submit" className="btn btn-warning w-100">Registrarse</button>
+              <button type="submit" className="btn btn-warning w-100 mt-3">Registrarse</button>
             </form>
           </div>
         </div>

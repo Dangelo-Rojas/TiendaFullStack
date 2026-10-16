@@ -20,9 +20,9 @@ export default function Home() {
               Propiedades con historia, actividad paranormal garantizada y vecinos
               que llevan más de 100 años viviendo ahí.
             </p>
-            <div className="d-flex flex-wrap gap-2">
-              <Link to="/productos" className="btn btn-warning btn-lg">Ver propiedades</Link>
-              <Link to="/blogs" className="btn btn-outline-light btn-lg">Leer casos</Link>
+            <div className="d-flex flex-wrap gap-4">
+              <Link to="/productos" className="btn-enlace">Ver propiedades</Link>
+              <Link to="/blogs" className="btn-enlace secundario">Leer casos</Link>
             </div>
           </div>
         </div>
@@ -45,7 +45,7 @@ export default function Home() {
                 <dt>Precio</dt>
                 <dd className="precio-destacado">{propiedadMes.precio}</dd>
               </dl>
-              <Link to={`/producto/${propiedadMes.id}`} className="btn btn-warning">
+             <Link to={`/producto/${propiedadMes.id}`} className="btn-enlace">
                 Ver ficha completa
               </Link>
             </div>

@@ -45,7 +45,7 @@ export default function Contacto() {
               <div className="form-text text-end">{datos.mensaje.length}/500</div>
             </div>
 
-            <button type="submit" className="btn btn-warning w-100">Enviar mensaje</button>
+            <button type="submit" className="btn btn-warning w-100 mt-3">Enviar mensaje</button>
           </form>
         </div>
       </div>

@@ -18,7 +18,7 @@ export default function Blogs() {
                   <div className="card-body">
                     <h2 className="h5 card-title">{b.titulo}</h2>
                     <p className="card-text">{b.resumen}</p>
-                    <Link to={`/blogs/${b.id}`} className="btn btn-warning btn-sm">Ver caso</Link>
+                    <Link to={`/blogs/${b.id}`} className="btn-enlace chico">Ver caso</Link>
                   </div>
                 </div>
               </div>
