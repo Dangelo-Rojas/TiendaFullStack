@@ -7,6 +7,8 @@ import Productos from './pages/Productos';
 import Detalle from './pages/Detalle';
 import Carrito from './pages/Carrito';
 import Registro from './pages/Registro';
+import Login from './pages/Login';
+import Contacto from './pages/Contacto';
 
 export default function App() {
   return (
@@ -20,8 +22,8 @@ export default function App() {
           <Route path="/producto/:id" element={<Detalle />} />
           <Route path="/nosotros" element={<EnConstruccion titulo="Nosotros" />} />
           <Route path="/blogs" element={<EnConstruccion titulo="Blogs" />} />
-          <Route path="/contacto" element={<EnConstruccion titulo="Contacto" />} />
-          <Route path="/login" element={<EnConstruccion titulo="Iniciar sesión" />} />
+          <Route path="/contacto" element={<Contacto />} />
+<         Route path="/login" element={<Login />} />
           <Route path="/registro" element={<Registro />} />
           <Route path="/carrito" element={<Carrito />} />
           <Route path="*" element={<EnConstruccion titulo="Página no encontrada" />} />

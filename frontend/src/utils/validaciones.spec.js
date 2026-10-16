@@ -1,5 +1,5 @@
     import {
-  obtenerComunas, correoValido, validarRegistro, esFormularioValido,
+  obtenerComunas, correoValido, validarRegistro, esFormularioValido, validarLogin, validarContacto,
 } from './validaciones';
 
 describe('Validaciones de formularios', () => {
@@ -56,4 +56,34 @@ describe('Validaciones de formularios', () => {
     expect(esFormularioValido({})).toBeTrue();
     expect(esFormularioValido({ nombre: 'error' })).toBeFalse();
   });
+
+    it('validarLogin acepta credenciales válidas', () => {
+    expect(validarLogin({ correo: 'a@gmail.com', contrasena: '1234' })).toEqual({});
+  });
+
+  it('validarLogin marca correo inválido y contraseña corta', () => {
+    const errores = validarLogin({ correo: 'a@yahoo.com', contrasena: 'abc' });
+    expect(errores.correo).toBeDefined();
+    expect(errores.contrasena).toBeDefined();
+  });
+
+  it('validarLogin rechaza contraseña de más de 10 caracteres', () => {
+    expect(validarLogin({ correo: 'a@gmail.com', contrasena: '12345678901' }).contrasena).toBeDefined();
+  });
+
+  it('validarContacto acepta un mensaje válido', () => {
+    expect(validarContacto({ nombre: 'Ana', correo: 'ana@duoc.cl', mensaje: 'Hola' })).toEqual({});
+  });
+
+  it('validarContacto marca campos vacíos', () => {
+    const errores = validarContacto({ nombre: ' ', correo: '', mensaje: ' ' });
+    expect(Object.keys(errores).length).toBe(3);
+  });
+
+  it('validarContacto rechaza nombre y mensaje demasiado largos', () => {
+    const errores = validarContacto({ nombre: 'a'.repeat(101), correo: 'ana@duoc.cl', mensaje: 'b'.repeat(501) });
+    expect(errores.nombre).toBeDefined();
+    expect(errores.mensaje).toBeDefined();
+  });
+  
 });

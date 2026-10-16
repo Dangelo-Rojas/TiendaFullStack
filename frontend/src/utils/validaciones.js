@@ -29,10 +29,35 @@ export function validarRegistro(datos) {
   if (datos.region === '') errores.region = 'Debe seleccionar una región.';
   if (datos.comuna === '') errores.comuna = 'Debe seleccionar una comuna.';
 
-  return errores;
+  return errores; 
 }
 
 // true si no hay ningún error
 export function esFormularioValido(errores) {
   return Object.keys(errores).length === 0;
+}
+
+export function validarLogin(datos) {
+  const errores = {};
+  if (!correoValido(datos.correo)) {
+    errores.correo = 'Correo obligatorio. Solo @duoc.cl, @profesor.duoc.cl o @gmail.com.';
+  }
+  if (datos.contrasena.length < 4 || datos.contrasena.length > 10) {
+    errores.contrasena = 'La contraseña debe tener entre 4 y 10 caracteres.';
+  }
+  return errores;
+}
+
+export function validarContacto(datos) {
+  const errores = {};
+  if (datos.nombre.trim() === '' || datos.nombre.length > 100) {
+    errores.nombre = 'El nombre es obligatorio (máx. 100 caracteres).';
+  }
+  if (!correoValido(datos.correo)) {
+    errores.correo = 'Correo inválido. Solo @duoc.cl, @profesor.duoc.cl o @gmail.com.';
+  }
+  if (datos.mensaje.trim() === '' || datos.mensaje.length > 500) {
+    errores.mensaje = 'El mensaje es obligatorio (máx. 500 caracteres).';
+  }
+  return errores;
 }
