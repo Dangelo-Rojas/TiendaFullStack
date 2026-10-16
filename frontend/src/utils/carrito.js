@@ -28,3 +28,20 @@ export function calcularTotal(carrito, productos) {
     return total + (producto ? parsePrecio(producto.precio) : 0);
   }, 0);
 }
+
+// Convierte ["a","a","b"] en [{ producto: A, cantidad: 2, subtotal }, { producto: B, cantidad: 1, subtotal }]
+export function agruparCarrito(carrito, productos) {
+  const conteo = {};
+  carrito.forEach((id) => {
+    conteo[id] = (conteo[id] || 0) + 1;
+  });
+
+  return Object.keys(conteo)
+    .map((id) => productos.find((p) => p.id === id))
+    .filter(Boolean)
+    .map((producto) => ({
+      producto,
+      cantidad: conteo[producto.id],
+      subtotal: parsePrecio(producto.precio) * conteo[producto.id],
+    }));
+}

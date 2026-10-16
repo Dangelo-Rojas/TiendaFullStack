@@ -1,5 +1,5 @@
 import {
-  parsePrecio, formatPrecio, agregarAlCarrito, quitarDelCarrito, calcularTotal,
+  parsePrecio, formatPrecio, agregarAlCarrito, quitarDelCarrito, calcularTotal, agruparCarrito,
 } from './carrito';
 
 describe('Utilidades del carrito', () => {
@@ -56,6 +56,17 @@ describe('Utilidades del carrito', () => {
 
   it('calcularTotal ignora ids que no existen en el catálogo', () => {
     expect(calcularTotal(['mansion', 'no-existe'], productos)).toBe(100000);
+  });
+
+    it('agruparCarrito junta ids repetidos con su cantidad y subtotal', () => {
+    const items = agruparCarrito(['mansion', 'cabana', 'mansion'], productos);
+    expect(items.length).toBe(2);
+    expect(items[0].cantidad).toBe(2);
+    expect(items[0].subtotal).toBe(200000);
+  });
+
+  it('agruparCarrito ignora ids que no existen', () => {
+    expect(agruparCarrito(['no-existe'], productos)).toEqual([]);
   });
   
 });
