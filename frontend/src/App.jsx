@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Productos from './pages/Productos';
 import Detalle from './pages/Detalle';
 import Carrito from './pages/Carrito';
+import Registro from './pages/Registro';
 
 export default function App() {
   return (
@@ -21,7 +22,7 @@ export default function App() {
           <Route path="/blogs" element={<EnConstruccion titulo="Blogs" />} />
           <Route path="/contacto" element={<EnConstruccion titulo="Contacto" />} />
           <Route path="/login" element={<EnConstruccion titulo="Iniciar sesión" />} />
-          <Route path="/registro" element={<EnConstruccion titulo="Registro" />} />
+          <Route path="/registro" element={<Registro />} />
           <Route path="/carrito" element={<Carrito />} />
           <Route path="*" element={<EnConstruccion titulo="Página no encontrada" />} />
         </Routes>
