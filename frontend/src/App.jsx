@@ -2,6 +2,8 @@ import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import EnConstruccion from './components/EnConstruccion';
+import Home from './pages/Home';
+import Productos from './pages/Productos';
 
 export default function App() {
   return (
@@ -10,8 +12,8 @@ export default function App() {
 
       <main className="flex-grow-1">
         <Routes>
-          <Route path="/" element={<EnConstruccion titulo="Home" />} />
-          <Route path="/productos" element={<EnConstruccion titulo="Propiedades" />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/productos" element={<Productos />} />
           <Route path="/producto/:id" element={<EnConstruccion titulo="Detalle de propiedad" />} />
           <Route path="/nosotros" element={<EnConstruccion titulo="Nosotros" />} />
           <Route path="/blogs" element={<EnConstruccion titulo="Blogs" />} />
