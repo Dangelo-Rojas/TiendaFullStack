@@ -1,3 +1,16 @@
+const fs = require('fs');
+
+// Si no hay Chrome instalado, usar Edge (también es Chromium)
+if (!process.env.CHROME_BIN) {
+  const candidatos = [
+    'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+    'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe',
+    'C:\\Program Files\\Microsoft\\Edge\\Application\\msedge.exe',
+  ];
+  const encontrado = candidatos.find((ruta) => fs.existsSync(ruta));
+  if (encontrado) process.env.CHROME_BIN = encontrado;
+}
+
 module.exports = function (config) {
   config.set({
     frameworks: ['jasmine', 'webpack'],
