@@ -66,3 +66,89 @@ h1, .h1 {
   transform: translateY(-4px);
   box-shadow: 0 6px 20px rgba(255, 122, 26, 0.25) !important;
 }
+
+/* ==== Tipografía: títulos de imprenta antigua ==== */
+:root {
+  --fuente-titulos: 'IM Fell English', Georgia, serif;
+}
+h1, h2, h3, .h1, .h2, .h3, .h4, .h5, .display-6,
+.navbar-brand, .card-title {
+  font-family: var(--fuente-titulos);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+/* ==== Home: hero ==== */
+.hero-home {
+  min-height: 75vh;
+  display: flex;
+  align-items: center;
+  background:
+    linear-gradient(90deg, rgba(20, 16, 26, 0.96) 0%, rgba(20, 16, 26, 0.8) 40%, rgba(20, 16, 26, 0.15) 100%),
+    url('/img/hero-mansion.jpg') center / cover;
+}
+.hero-home h1 {
+  font-size: clamp(2.6rem, 6vw, 4.8rem);
+  line-height: 1.05;
+  max-width: 11ch;
+}
+.hero-home p {
+  max-width: 40ch;
+  font-size: 1.15rem;
+  color: #cfc7db;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero-home .contenido {
+    animation: aparecer 1.4s ease-out both;
+  }
+}
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ==== Home: propiedad del mes ==== */
+.propiedad-mes {
+  background: #1a1322;
+  border-top: 1px solid #3a2647;
+  border-bottom: 1px solid #3a2647;
+}
+.propiedad-mes img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.55);
+}
+.ficha dt {
+  color: #b9aec8;
+  font-weight: normal;
+  font-size: 0.9rem;
+}
+.ficha dd {
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+}
+.precio-destacado {
+  font-family: var(--fuente-titulos);
+  font-size: 2.2rem;
+  color: #ff7a1a;
+}
+
+/* ==== Home: casos recientes ==== */
+.caso-reciente {
+  color: inherit;
+  padding: 1rem;
+  background: #1a1322;
+  border-left: 3px solid #ff7a1a;
+}
+.caso-reciente:hover h3 {
+  color: #ff7a1a;
+}
+.caso-reciente img {
+  width: 120px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
