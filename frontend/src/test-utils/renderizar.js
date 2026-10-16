@@ -20,3 +20,15 @@ export function renderizar(elemento) {
     },
   };
 }
+
+// Simula que el usuario escribe en un input o elige una opción en un select
+export function cambiarValor(elemento, valor) {
+  const prototipo = Object.getPrototypeOf(elemento);
+  const setterNativo = Object.getOwnPropertyDescriptor(prototipo, 'value').set;
+
+  act(() => {
+    setterNativo.call(elemento, valor);
+    const tipoEvento = elemento.tagName === 'SELECT' ? 'change' : 'input';
+    elemento.dispatchEvent(new Event(tipoEvento, { bubbles: true }));
+  });
+}
