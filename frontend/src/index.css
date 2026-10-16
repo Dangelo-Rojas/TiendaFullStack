@@ -1,0 +1,68 @@
+/* ==== Paleta Casas Embrujadas (heredada de la EP1) ==== */
+[data-bs-theme="dark"] {
+  --bs-body-bg: #14101a;
+  --bs-body-color: #eae6f0;
+  --bs-body-font-family: Georgia, 'Times New Roman', serif;
+  --bs-secondary-color: #b9aec8;       /* text-muted */
+  --bs-border-color: #3a2647;
+  --bs-link-color-rgb: 255, 122, 26;   /* naranjo */
+  --bs-link-hover-color-rgb: 255, 154, 77;
+}
+
+/* Títulos en naranjo, como .titulo-seccion de la EP1 */
+h1, .h1 {
+  color: #ff7a1a;
+}
+
+/* Navbar y footer morado oscuro con borde naranjo */
+.bg-dark {
+  background-color: #24122e !important;
+}
+.navbar {
+  border-bottom: 2px solid #ff7a1a;
+}
+.navbar-brand {
+  color: #ff7a1a !important;
+  font-weight: bold;
+}
+.navbar .nav-link.active,
+.navbar .nav-link:hover {
+  color: #ff7a1a !important;
+}
+
+/* Tarjetas un poco más claras que el fondo */
+.card {
+  --bs-card-bg: #1e1626;
+  --bs-card-border-color: #3a2647;
+}
+
+/* Botón principal naranjo (reemplaza al amarillo de Bootstrap) */
+.btn-warning {
+  --bs-btn-bg: #ff7a1a;
+  --bs-btn-border-color: #ff7a1a;
+  --bs-btn-color: #14101a;
+  --bs-btn-hover-bg: #ff9a4d;
+  --bs-btn-hover-border-color: #ff9a4d;
+  --bs-btn-hover-color: #14101a;
+  --bs-btn-active-bg: #e8650a;
+  --bs-btn-active-border-color: #e8650a;
+  font-weight: bold;
+}
+
+/* Botones de contorno legibles sobre fondo oscuro */
+.btn-outline-dark {
+  --bs-btn-color: #eae6f0;
+  --bs-btn-border-color: #6d5a80;
+  --bs-btn-hover-bg: #3a2647;
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-border-color: #ff7a1a;
+}
+
+/* Efecto al pasar el mouse por una tarjeta de producto */
+.card {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(255, 122, 26, 0.25) !important;
+}
