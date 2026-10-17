@@ -16,7 +16,8 @@ export default function Detalle() {
     return (
       <div className="container py-5 text-center">
         <h1>Propiedad no encontrada 👻</h1>
-        <Link to="/productos" className="btn btn-dark mt-3">Volver al catálogo</Link>
+        <p className="text-secondary">Puede que nunca haya existido... o que ya no quiera ser encontrada.</p>
+        <Link to="/productos" className="btn-enlace">Volver a propiedades</Link>
       </div>
     );
   }
@@ -27,28 +28,46 @@ export default function Detalle() {
   }
 
   return (
-    <div className="container py-5">
-      <div className="row g-4">
-        <div className="col-12 col-md-6">
-          <img src={producto.imagenes[imagenActiva]} alt={producto.nombre}
-               className="img-fluid rounded mb-2 w-100" style={{ maxHeight: '400px', objectFit: 'cover' }} />
+    <div className="container py-4">
+      <nav aria-label="breadcrumb">
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item"><Link to="/">Home</Link></li>
+          <li className="breadcrumb-item"><Link to="/productos">Propiedades</Link></li>
+          <li className="breadcrumb-item active" aria-current="page">{producto.nombre}</li>
+        </ol>
+      </nav>
+
+      <div className="row g-4 g-lg-5">
+        {/* Galería */}
+        <div className="col-12 col-lg-7">
+          <img src={producto.imagenes[imagenActiva]} alt={producto.nombre} className="detalle-imagen mb-3" />
           <div className="d-flex gap-2">
             {producto.imagenes.map((img, i) => (
-              <img key={i} src={img} alt={`Vista ${i + 1}`} width="80" height="60"
-                   style={{ objectFit: 'cover', cursor: 'pointer' }}
-                   className={`rounded border ${i === imagenActiva ? 'border-warning border-3' : ''}`}
-                   onClick={() => setImagenActiva(i)} />
+              <button
+                key={i} type="button"
+                className={`detalle-miniatura ${i === imagenActiva ? 'activa' : ''}`}
+                onClick={() => setImagenActiva(i)}
+                aria-label={`Ver imagen ${i + 1}`}
+              >
+                <img src={img} alt="" />
+              </button>
             ))}
           </div>
         </div>
 
-        <div className="col-12 col-md-6">
-          <h1>{producto.nombre}</h1>
-          <p className="text-muted">📍 {producto.ubicacion}</p>
-          <p className="fs-3 fw-bold">{producto.precio}</p>
+        {/* Ficha */}
+        <div className="col-12 col-lg-5">
+          <h1 className="display-6 mb-3">{producto.nombre}</h1>
           <p>{producto.descripcion}</p>
 
-          <div className="d-flex align-items-center gap-2 my-3">
+          <dl className="ficha">
+            <dt>Ubicación</dt>
+            <dd>{producto.ubicacion}</dd>
+            <dt>Precio</dt>
+            <dd className="precio-destacado">{producto.precio}</dd>
+          </dl>
+
+          <div className="d-flex align-items-center gap-2 mb-3">
             <label htmlFor="cantidad" className="mb-0">Cantidad</label>
             <select id="cantidad" className="form-select w-auto" value={cantidad}
                     onChange={(e) => setCantidad(Number(e.target.value))}>
@@ -57,9 +76,14 @@ export default function Detalle() {
             <button className="btn btn-warning" onClick={handleAgregar}>Añadir al carrito</button>
           </div>
 
-          {agregado && <div className="alert alert-success py-2">Agregado al carrito ✔</div>}
+          {agregado && (
+            <div className="alert alert-success py-2 d-flex justify-content-between align-items-center">
+              <span>Agregado al carrito ✔</span>
+              <Link to="/carrito" className="alert-link">Ver carrito</Link>
+            </div>
+          )}
 
-          <Link to="/productos">← Volver a propiedades</Link>
+          <Link to="/productos" className="btn-enlace chico secundario">Volver a propiedades</Link>
         </div>
       </div>
     </div>

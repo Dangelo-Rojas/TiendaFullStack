@@ -12,10 +12,12 @@ import Contacto from './pages/Contacto';
 import Login from './pages/Login';
 import Registro from './pages/Registro';
 import NoEncontrada from './pages/NoEncontrada';
+import ScrollAlInicio from './components/ScrollAlInicio';
 
 export default function App() {
   return (
     <div className="d-flex flex-column min-vh-100">
+      <ScrollAlInicio />
       <Navbar />
 
       <main className="flex-grow-1">

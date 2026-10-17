@@ -129,9 +129,11 @@ h1, h2, h3, .h1, .h2, .h3, .h4, .h5, .display-6,
   font-size: 1.1rem;
   margin-bottom: 0.75rem;
 }
+.ficha .precio-destacado,
 .precio-destacado {
-  font-family: var(--fuente-titulos);
-  font-size: 2.2rem;
+  font-family: 'Palatino Linotype', 'Book Antiqua', 'Times New Roman', serif;
+  font-variant-numeric: lining-nums;
+  font-size: 1.2rem;
   color: #ff7a1a;
 }
 
@@ -331,4 +333,52 @@ h1, h2, h3, .h1, .h2, .h3, .h4, .h5, .display-6,
 .form-control.is-invalid:focus,
 .form-select.is-invalid:focus {
   box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.3);
+}
+
+/* ==== Catálogo ==== */
+.cabecera-catalogo {
+  background: linear-gradient(180deg, #24122e 0%, #14101a 100%);
+  border-bottom: 1px solid #3a2647;
+}
+.precio-tarjeta {
+  font-family: 'Palatino Linotype', 'Book Antiqua', 'Times New Roman', serif;
+  font-variant-numeric: lining-nums;
+  font-size: 1.5rem;
+  color: #ff7a1a;
+}
+
+/* ==== Detalle de propiedad ==== */
+.detalle-imagen {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  max-height: 460px;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.55);
+}
+.detalle-miniatura {
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  background: none;
+  opacity: 0.6;
+  transition: opacity 0.2s, border-color 0.2s;
+}
+.detalle-miniatura img {
+  width: 90px;
+  height: 68px;
+  object-fit: cover;
+  border-radius: 2px;
+  display: block;
+}
+.detalle-miniatura:hover,
+.detalle-miniatura.activa {
+  opacity: 1;
+}
+.detalle-miniatura.activa {
+  border-color: #ff7a1a;
+}
+.detalle-miniatura:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
 }
