@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useCarrito } from '../context/CarritoContext';
 
@@ -15,9 +15,31 @@ export default function Navbar() {
   const [menuAbierto, setMenuAbierto] = useState(false);
 
   const cerrarMenu = () => setMenuAbierto(false);
+  const navRef = useRef(null);
+
+  // Con el menú abierto: cerrar al hacer clic fuera del navbar o al presionar Escape
+  useEffect(() => {
+    if (!menuAbierto) return;
+
+    function alClicFuera(e) {
+      if (!navRef.current.contains(e.target)) setMenuAbierto(false);
+    }
+    function alPresionarTecla(e) {
+      if (e.key === 'Escape') setMenuAbierto(false);
+    }
+
+    document.addEventListener('mousedown', alClicFuera);
+    document.addEventListener('keydown', alPresionarTecla);
+
+    // Limpieza: quitar los listeners cuando el menú se cierra
+    return () => {
+      document.removeEventListener('mousedown', alClicFuera);
+      document.removeEventListener('keydown', alPresionarTecla);
+    };
+  }, [menuAbierto]);
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav ref={navRef} className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid px-3 px-lg-5">
         <Link className="navbar-brand" to="/" onClick={cerrarMenu}>👻 Casas Embrujadas</Link>
 
