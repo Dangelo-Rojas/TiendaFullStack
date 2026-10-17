@@ -459,3 +459,34 @@ h1, h2, h3, .h1, .h2, .h3, .h4, .h5, .display-6,
   font-variant-numeric: lining-nums;
   font-size: 0.9rem;
 }
+
+/* ==== Footer ==== */
+.pie {
+  background: #24122e;
+  border-top: 2px solid #ff7a1a;
+}
+.pie__marca {
+  font-family: var(--fuente-titulos);
+  font-size: 1.5rem;
+  color: #ff7a1a;
+}
+.pie__titulo {
+  font-family: var(--fuente-titulos);
+  font-size: 1.15rem;
+  color: #eae6f0;
+  margin-bottom: 0.75rem;
+}
+.pie li {
+  margin-bottom: 0.35rem;
+}
+.pie a {
+  color: #cfc7db;
+  text-decoration: none;
+}
+.pie a:hover {
+  color: #ff7a1a;
+}
+.pie hr {
+  border-color: #3a2647;
+  opacity: 1;
+}
