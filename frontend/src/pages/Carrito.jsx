@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { productos } from '../data/productos';
 import { useCarrito } from '../context/CarritoContext';
@@ -5,13 +6,32 @@ import { agruparCarrito, formatPrecio } from '../utils/carrito';
 
 export default function Carrito() {
   const { carrito, total, agregar, quitar, vaciar } = useCarrito();
+  const [compraConfirmada, setCompraConfirmada] = useState(false);
   const items = agruparCarrito(carrito, productos);
+
+  function finalizarCompra() {
+    vaciar();
+    setCompraConfirmada(true);
+  }
+
+  if (compraConfirmada) {
+    return (
+      <div className="container py-5 text-center">
+        <h1>¡Compra confirmada! 🕯️</h1>
+        <p className="text-secondary mb-4">
+          Un agente se comunicará contigo pronto... probablemente a medianoche.
+        </p>
+        <Link to="/productos" className="btn-enlace">Seguir viendo propiedades</Link>
+      </div>
+    );
+  }
 
   if (items.length === 0) {
     return (
       <div className="container py-5 text-center">
         <h1>Tu carrito está vacío 🕸️</h1>
-        <Link to="/productos" className="btn btn-warning mt-3">Ver propiedades</Link>
+        <p className="text-secondary mb-4">Todavía no eliges tu próxima casa embrujada.</p>
+        <Link to="/productos" className="btn-enlace">Ver propiedades</Link>
       </div>
     );
   }
@@ -20,37 +40,57 @@ export default function Carrito() {
     <div className="container py-5">
       <h1 className="mb-4">Tu carrito</h1>
 
-      <div className="table-responsive">
-        <table className="table align-middle">
-          <thead>
-            <tr><th>Propiedad</th><th>Precio</th><th>Cantidad</th><th>Subtotal</th></tr>
-          </thead>
-          <tbody>
-            {items.map(({ producto, cantidad, subtotal }) => (
-              <tr key={producto.id}>
-                <td>
-                  <img src={producto.imagen} alt="" width="60" height="45"
-                       className="rounded me-2" style={{ objectFit: 'cover' }} />
-                  {producto.nombre}
-                </td>
-                <td>{producto.precio}</td>
-                <td>
-                  <div className="btn-group btn-group-sm">
-                    <button className="btn btn-outline-dark" onClick={() => quitar(producto.id)}>−</button>
-                    <span className="btn btn-light disabled">{cantidad}</span>
-                    <button className="btn btn-outline-dark" onClick={() => agregar(producto.id)}>+</button>
-                  </div>
-                </td>
-                <td>{formatPrecio(subtotal)}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <div className="row g-4 g-lg-5">
+        {/* Lista de propiedades */}
+        <div className="col-12 col-lg-8">
+          {items.map(({ producto, cantidad, subtotal }) => (
+            <div className="item-carrito d-flex align-items-center gap-3" key={producto.id}>
+              <img src={producto.imagen} alt="" />
 
-      <div className="d-flex justify-content-between align-items-center">
-        <button className="btn btn-outline-danger" onClick={vaciar}>Vaciar carrito</button>
-        <p className="fs-4 fw-bold mb-0">Total: {formatPrecio(total)}</p>
+              <div className="flex-grow-1">
+                <Link to={`/producto/${producto.id}`} className="item-carrito__nombre">
+                  {producto.nombre}
+                </Link>
+                <p className="mb-0 small text-secondary">{producto.precio} c/u</p>
+              </div>
+
+            <div className="contador" role="group" aria-label={`Cantidad de ${producto.nombre}`}>
+              <button className="contador__boton" onClick={() => quitar(producto.id)} aria-label="Quitar uno">−</button>
+              <span className="contador__valor" aria-live="polite">{cantidad}</span>
+              <button className="contador__boton" onClick={() => agregar(producto.id)} aria-label="Agregar uno">+</button>
+            </div>
+
+              <p className="mb-0 text-end item-carrito__subtotal">{formatPrecio(subtotal)}</p>
+            </div>
+          ))}
+
+          <button className="btn-enlace chico secundario mt-3" onClick={vaciar}>
+            Vaciar carrito
+          </button>
+        </div>
+
+        {/* Resumen */}
+        <div className="col-12 col-lg-4">
+          <aside className="resumen-carrito">
+            <h2 className="h4 mb-3">Resumen</h2>
+            <div className="d-flex justify-content-between mb-2">
+              <span className="text-secondary">Propiedades</span>
+              <span>{carrito.length}</span>
+            </div>
+            <div className="d-flex justify-content-between mb-2">
+              <span className="text-secondary">Exorcismo</span>
+              <span>Incluido</span>
+            </div>
+            <hr />
+            <div className="d-flex justify-content-between align-items-baseline mb-4">
+              <span>Total</span>
+              <span className="precio-destacado">{formatPrecio(total)}</span>
+            </div>
+            <button className="btn btn-warning w-100" onClick={finalizarCompra}>
+              Finalizar compra
+            </button>
+          </aside>
+        </div>
       </div>
     </div>
   );

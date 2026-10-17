@@ -382,3 +382,80 @@ h1, h2, h3, .h1, .h2, .h3, .h4, .h5, .display-6,
   outline: 2px solid #ffffff;
   outline-offset: 2px;
 }
+
+/* ==== Carrito ==== */
+.item-carrito {
+  flex-wrap: wrap;
+  padding: 1rem 0;
+  border-bottom: 1px solid #3a2647;
+}
+.item-carrito img {
+  width: 96px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+.item-carrito__nombre {
+  font-family: var(--fuente-titulos);
+  font-size: 1.25rem;
+  color: #eae6f0;
+  text-decoration: none;
+}
+.item-carrito__nombre:hover {
+  color: #ff7a1a;
+}
+.item-carrito__subtotal {
+  min-width: 9rem;
+  font-family: 'Palatino Linotype', 'Book Antiqua', 'Times New Roman', serif;
+  font-variant-numeric: lining-nums;
+  font-size: 1.1rem;
+}
+.resumen-carrito {
+  position: sticky;
+  top: 1.5rem;
+  padding: 1.5rem;
+  background: #1a1322;
+  border: 1px solid #3a2647;
+  border-radius: 6px;
+}
+.btn-enlace {
+  cursor: pointer;
+}
+
+/* ==== Contador de cantidad ==== */
+.contador {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.1rem;
+  padding: 0.1rem;
+  background: #1a1322;
+  border: 1px solid #3a2647;
+  border-radius: 999px;
+}
+.contador__boton {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #eae6f0;
+  font-size: 0.9rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+.contador__boton:hover {
+  background: rgba(255, 122, 26, 0.15);
+  color: #ff7a1a;
+}
+.contador__boton:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 1px;
+}
+.contador__valor {
+  min-width: 1.25rem;
+  text-align: center;
+  font-family: 'Palatino Linotype', 'Book Antiqua', 'Times New Roman', serif;
+  font-variant-numeric: lining-nums;
+  font-size: 0.9rem;
+}
