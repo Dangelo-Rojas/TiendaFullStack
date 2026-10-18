@@ -74,7 +74,7 @@ cd frontend
 npm test
 ```
 
-**41 pruebas · 100 % de cobertura** (sentencias, ramas, funciones y líneas).
+**42 pruebas · 100 % de cobertura** (sentencias, ramas, funciones y líneas).
 
 | Archivo de pruebas | Qué verifica | Tipo | Pruebas |
 |---|---|---|---|
@@ -82,7 +82,7 @@ npm test
 | `utils/validaciones.spec.js` | Correo, contraseña, regiones/comunas, registro, login y contacto | Lógica | 15 |
 | `components/TarjetaProducto.spec.jsx` | Muestra los datos, enlace al detalle, botón condicional y clic | DOM + comportamiento | 4 |
 | `context/CarritoContext.spec.jsx` | Carga desde `localStorage`, datos corruptos, agregar/quitar/vaciar | Comportamiento + mocks | 3 |
-| `components/Navbar.spec.jsx` | Contador del carrito desde el Context y menú móvil | Integración + comportamiento | 2 |
+| `components/Navbar.spec.jsx` | Contador del carrito desde el Context; menú móvil (abrir, cerrar al navegar, clic fuera y Escape) | Integración + comportamiento | 3 |
 | `pages/Registro.spec.jsx` | Errores al enviar vacío, comuna dependiente y registro exitoso | Comportamiento (formulario) | 3 |
 | `sanity.spec.js` | Que el entorno Karma + Jasmine funcione | Entorno | 1 |
 
@@ -172,14 +172,13 @@ frontend/
 | `localStorage` leído y guardado a mano en cada acción | `CarritoContext` con `useState` + `useEffect` |
 | `actualizarContadorCarrito()` y `renderizarListaCarrito()` manuales | React vuelve a dibujar solo al cambiar el estado |
 | Validaciones que leían el DOM (`getElementById`) | Funciones puras + formularios controlados |
-| Sin pruebas | 41 pruebas unitarias con 100 % de cobertura |
+| Sin pruebas | 42 pruebas unitarias con 100 % de cobertura |
 
 ---
 
 ## 👥 Equipo
 
 - **Dangelo Rojas**
-- _(agregar integrantes)_
 
 ---
 

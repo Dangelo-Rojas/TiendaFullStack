@@ -13,6 +13,7 @@ export default function Contacto() {
     setDatos({ ...datos, [e.target.name]: e.target.value });
   }
 
+  // el mensaje no se envía a ningún lado (no hay backend), solo se valida y se muestra el aviso
   function handleSubmit(e) {
     e.preventDefault();
     const nuevosErrores = validarContacto(datos);
@@ -35,6 +36,7 @@ export default function Contacto() {
             <CampoFormulario etiqueta="Correo electrónico" nombre="correo" tipo="email"
               valor={datos.correo} onChange={handleChange} error={errores.correo} />
 
+            {/* el textarea va aparte porque CampoFormulario solo hace <input> */}
             <div className="mb-3">
               <label htmlFor="mensaje" className="form-label">Mensaje</label>
               <textarea id="mensaje" name="mensaje" rows="5" maxLength="500"
@@ -42,6 +44,7 @@ export default function Contacto() {
                 className={`form-control ${errores.mensaje ? 'is-invalid' : ''}`}
                 placeholder="Cuéntanos en qué te podemos ayudar..." />
               {errores.mensaje && <div className="invalid-feedback">{errores.mensaje}</div>}
+              {/* contador de caracteres, se actualiza con cada letra porque sale del estado */}
               <div className="form-text text-end">{datos.mensaje.length}/500</div>
             </div>
 

@@ -7,6 +7,8 @@ const enlaces = [
   { ruta: '/contacto', texto: 'Contacto' },
 ];
 
+// Footer en 3 columnas: marca, enlaces y dirección.
+// En celular la marca ocupa todo el ancho y las otras dos quedan lado a lado (col-6)
 export default function Footer() {
   return (
     <footer className="pie mt-5">
@@ -28,6 +30,7 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* dirección inventada, la empresa es ficticia */}
           <div className="col-6 col-md-4">
             <h2 className="pie__titulo">Visítanos</h2>
             <ul className="list-unstyled text-secondary mb-0">

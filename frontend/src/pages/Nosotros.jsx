@@ -1,3 +1,4 @@
+// Hitos de la línea de tiempo. Los datos son inventados, como toda la empresa
 const hitos = [
   {
     anio: '1899',
@@ -29,6 +30,7 @@ export default function Nosotros() {
         </div>
       </section>
 
+      {/* maxWidth en "ch" (ancho de un carácter) deja ~65 letras por línea, se lee más cómodo */}
       <section className="container py-5">
         <div style={{ maxWidth: '65ch' }}>
           <h2 className="mb-3">Cómo empezó todo</h2>
@@ -45,8 +47,7 @@ export default function Nosotros() {
         </div>
       </section>
 
-       
-
+      {/* <ol> porque la historia va en orden; los puntos y la línea vertical son puro CSS (.linea-tiempo) */}
       <section className="container pb-5">
         <h2 className="mb-4">Nuestra historia</h2>
         <ol className="linea-tiempo list-unstyled">

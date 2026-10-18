@@ -3,15 +3,18 @@ import { productos } from '../data/productos';
 import { blogs } from '../data/blogs';
 import TarjetaProducto from '../components/TarjetaProducto';
 
+// para cambiar la propiedad del mes basta con poner otro id de productos.js
 const ID_PROPIEDAD_MES = 'castillo-niebla';
 
 export default function Home() {
   const propiedadMes = productos.find((p) => p.id === ID_PROPIEDAD_MES);
+  // las destacadas son las 3 primeras, sin repetir la del mes
   const destacados = productos.filter((p) => p.id !== ID_PROPIEDAD_MES).slice(0, 3);
 
   return (
+    // <> </> es un Fragment: agrupa las secciones sin meter un div extra
     <>
-      {/* Hero */}
+      {/* Hero: texto a la izquierda, la foto de fondo y el degradado están en .hero-home (index.css) */}
       <section className="hero-home">
         <div className="container">
           <div className="contenido py-5">
@@ -28,7 +31,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Propiedad del mes */}
+      {/* Propiedad del mes: foto a un lado y la "ficha" al otro, en celular quedan una bajo la otra */}
       <section className="propiedad-mes py-5">
         <div className="container py-lg-4">
           <div className="row g-4 g-lg-5 align-items-center">
@@ -45,7 +48,7 @@ export default function Home() {
                 <dt>Precio</dt>
                 <dd className="precio-destacado">{propiedadMes.precio}</dd>
               </dl>
-             <Link to={`/producto/${propiedadMes.id}`} className="btn-enlace">
+              <Link to={`/producto/${propiedadMes.id}`} className="btn-enlace">
                 Ver ficha completa
               </Link>
             </div>
@@ -53,7 +56,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Destacadas */}
+      {/* Destacadas: misma tarjeta del catálogo pero sin onAgregar, así no sale el botón del carrito */}
       <section className="container py-5">
         <div className="d-flex justify-content-between align-items-baseline mb-4">
           <h2 className="mb-0">Propiedades destacadas</h2>
@@ -68,7 +71,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Casos recientes del blog */}
+      {/* Casos del blog, sacados de data/blogs.js igual que la página Blogs */}
       <section className="container pb-5">
         <h2 className="mb-4">Casos recientes</h2>
         <div className="row g-4">

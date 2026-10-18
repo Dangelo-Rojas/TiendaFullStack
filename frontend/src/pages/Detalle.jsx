@@ -4,14 +4,17 @@ import { productos } from '../data/productos';
 import { useCarrito } from '../context/CarritoContext';
 
 export default function Detalle() {
+  // el id viene de la URL: /producto/:id (en la EP1 era detalle-producto.html?id=...)
   const { id } = useParams();
   const { agregar } = useCarrito();
-  const [cantidad, setCantidad] = useState(1);
-  const [imagenActiva, setImagenActiva] = useState(0);
-  const [agregado, setAgregado] = useState(false);
+
+  const [cantidad, setCantidad] = useState(1);         // valor del select
+  const [imagenActiva, setImagenActiva] = useState(0); // índice de la foto grande
+  const [agregado, setAgregado] = useState(false);     // para mostrar el aviso verde
 
   const producto = productos.find((p) => p.id === id);
 
+  // si alguien escribe un id que no existe en la URL mostramos un mensaje en vez de romper la página
   if (!producto) {
     return (
       <div className="container py-5 text-center">
@@ -29,6 +32,7 @@ export default function Detalle() {
 
   return (
     <div className="container py-4">
+      {/* migas de pan, para saber dónde estás */}
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
           <li className="breadcrumb-item"><Link to="/">Home</Link></li>
@@ -42,6 +46,7 @@ export default function Detalle() {
         <div className="col-12 col-lg-7">
           <img src={producto.imagenes[imagenActiva]} alt={producto.nombre} className="detalle-imagen mb-3" />
           <div className="d-flex gap-2">
+            {/* las miniaturas son <button> y no <img> con onClick, así también se pueden elegir con Tab + Enter */}
             {producto.imagenes.map((img, i) => (
               <button
                 key={i} type="button"
@@ -69,6 +74,7 @@ export default function Detalle() {
 
           <div className="d-flex align-items-center gap-2 mb-3">
             <label htmlFor="cantidad" className="mb-0">Cantidad</label>
+            {/* el value del select viene como texto, por eso el Number() */}
             <select id="cantidad" className="form-select w-auto" value={cantidad}
                     onChange={(e) => setCantidad(Number(e.target.value))}>
               {[1, 2, 3].map((n) => <option key={n} value={n}>{n}</option>)}

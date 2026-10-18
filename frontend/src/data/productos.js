@@ -1,3 +1,7 @@
+// Catálogo de propiedades (copiado de scripts/productos-data.js de la EP1).
+// Las rutas de imagen empiezan con "/" para que funcionen desde cualquier ruta,
+// por ejemplo /producto/faro-ahogado (sin la barra buscaría /producto/img/...).
+// El precio queda como texto tal cual se muestra; para calcular se usa parsePrecio()
 export const productos = [
   {
     id: "mansion-victoriana",

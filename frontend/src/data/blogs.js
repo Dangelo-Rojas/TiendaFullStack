@@ -1,3 +1,4 @@
+// Casos curiosos del blog. "parrafos" es un arreglo para dibujar cada párrafo con .map()
 export const blogs = [
   {
     id: 'dama-de-blanco',

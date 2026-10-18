@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useCarrito } from '../context/CarritoContext';
 
+// los enlaces del menú en un arreglo, así se agregan o quitan sin tocar el JSX
 const enlaces = [
   { ruta: '/', texto: 'Home' },
   { ruta: '/productos', texto: 'Propiedades' },
@@ -11,13 +12,20 @@ const enlaces = [
 ];
 
 export default function Navbar() {
+  // el contador del carrito sale del Context, se actualiza solo cuando agregas o quitas algo
   const { cantidad } = useCarrito();
-  const [menuAbierto, setMenuAbierto] = useState(false);
 
+  // El menú en celular (botón ☰) lo maneja React con este estado.
+  // Antes lo abría el JS de Bootstrap, pero como React Router no recarga la página
+  // el menú se quedaba abierto al cambiar de sección
+  const [menuAbierto, setMenuAbierto] = useState(false);
   const cerrarMenu = () => setMenuAbierto(false);
+
+  // referencia al <nav> real, para saber si un clic cayó dentro o fuera de él
   const navRef = useRef(null);
 
-  // Con el menú abierto: cerrar al hacer clic fuera del navbar o al presionar Escape
+  // Mientras el menú está abierto escuchamos clics y teclas en toda la página:
+  // un clic fuera del navbar o la tecla Escape lo cierran
   useEffect(() => {
     if (!menuAbierto) return;
 
@@ -31,7 +39,8 @@ export default function Navbar() {
     document.addEventListener('mousedown', alClicFuera);
     document.addEventListener('keydown', alPresionarTecla);
 
-    // Limpieza: quitar los listeners cuando el menú se cierra
+    // al cerrarse el menú se quitan los listeners; si no, se irían acumulando
+    // cada vez que lo abres
     return () => {
       document.removeEventListener('mousedown', alClicFuera);
       document.removeEventListener('keydown', alPresionarTecla);
@@ -40,9 +49,11 @@ export default function Navbar() {
 
   return (
     <nav ref={navRef} className="navbar navbar-expand-lg navbar-dark bg-dark">
+      {/* container-fluid para que el logo quede a la izquierda y no tan centrado */}
       <div className="container-fluid px-3 px-lg-5">
         <Link className="navbar-brand" to="/" onClick={cerrarMenu}>👻 Casas Embrujadas</Link>
 
+        {/* botón ☰, solo se ve bajo 992px (navbar-expand-lg) */}
         <button
           className="navbar-toggler" type="button"
           aria-controls="menu" aria-expanded={menuAbierto} aria-label="Abrir menú"
@@ -51,10 +62,13 @@ export default function Navbar() {
           <span className="navbar-toggler-icon"></span>
         </button>
 
+        {/* 'show' es la clase de Bootstrap que muestra el menú colapsado; la animación está en index.css */}
         <div className={`collapse navbar-collapse ${menuAbierto ? 'show' : ''}`} id="menu">
           <ul className="navbar-nav me-auto">
             {enlaces.map((e) => (
               <li className="nav-item" key={e.ruta}>
+                {/* NavLink marca como "active" el enlace de la página actual.
+                    'end' es para que Home no quede marcado en todas las rutas */}
                 <NavLink className="nav-link" to={e.ruta} end onClick={cerrarMenu}>{e.texto}</NavLink>
               </li>
             ))}

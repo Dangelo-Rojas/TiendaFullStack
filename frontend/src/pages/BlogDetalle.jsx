@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import { blogs } from '../data/blogs';
 
+// Un solo componente para todos los casos (antes eran blog-detalle-1.html y blog-detalle-2.html)
 export default function BlogDetalle() {
   const { id } = useParams();
   const blog = blogs.find((b) => b.id === id);
@@ -9,7 +10,7 @@ export default function BlogDetalle() {
     return (
       <div className="container py-5 text-center">
         <h1>Caso no encontrado 👻</h1>
-        <Link to="/blogs" className="btn btn-dark mt-3">Volver a blogs</Link>
+        <Link to="/blogs" className="btn-enlace">Volver a blogs</Link>
       </div>
     );
   }
@@ -24,9 +25,11 @@ export default function BlogDetalle() {
         </ol>
       </nav>
 
+      {/* ancho máximo para que las líneas de texto no queden demasiado largas */}
       <article className="mx-auto" style={{ maxWidth: '700px' }}>
         <h1 className="mb-3">{blog.titulo}</h1>
         <img src={blog.imagenGrande} alt={blog.titulo} className="img-fluid rounded mb-4" />
+        {/* usamos el índice como key porque los párrafos no cambian de orden */}
         {blog.parrafos.map((p, i) => <p key={i}>{p}</p>)}
       </article>
     </div>

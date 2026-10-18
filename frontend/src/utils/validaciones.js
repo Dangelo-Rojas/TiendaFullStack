@@ -1,21 +1,25 @@
-// Regiones y comunas (igual que en registro.js de la EP1)
+// Validaciones de los formularios (Registro, Login y Contacto).
+// Mismas reglas de validaciones.js y registro.js de la EP1, pero ahora no leen el DOM:
+// reciben los datos del formulario y devuelven un objeto { campo: 'mensaje de error' }.
+// El componente solo se encarga de mostrar esos mensajes.
+
 export const regionesComunas = {
   metropolitana: ['Santiago', 'Puente Alto', 'Maipú', 'Providencia'],
   araucania: ['Temuco', 'Villarrica', 'Pucón'],
   nuble: ['Chillán', 'San Carlos', 'Bulnes'],
 };
 
-// Devuelve las comunas de una región, o [] si no hay región elegida
+// si todavía no se elige región (o viene una que no existe) devolvemos [] para que el select quede vacío
 export function obtenerComunas(region) {
   return regionesComunas[region] || [];
 }
 
-// Solo correos @duoc.cl, @profesor.duoc.cl o @gmail.com, máximo 100 caracteres
+// solo se aceptan @duoc.cl, @profesor.duoc.cl y @gmail.com (requisito del enunciado), máx. 100 caracteres
 export function correoValido(correo) {
   return /^[^\s@]+@(duoc\.cl|profesor\.duoc\.cl|gmail\.com)$/.test(correo) && correo.length <= 100;
 }
 
-// Recibe los datos del formulario y devuelve { campo: 'mensaje de error' }
+// Si no hay errores devuelve {} (objeto vacío)
 export function validarRegistro(datos) {
   const errores = {};
 
@@ -29,10 +33,10 @@ export function validarRegistro(datos) {
   if (datos.region === '') errores.region = 'Debe seleccionar una región.';
   if (datos.comuna === '') errores.comuna = 'Debe seleccionar una comuna.';
 
-  return errores; 
+  return errores;
 }
 
-// true si no hay ningún error
+// el formulario es válido cuando el objeto de errores quedó vacío
 export function esFormularioValido(errores) {
   return Object.keys(errores).length === 0;
 }
@@ -48,6 +52,8 @@ export function validarLogin(datos) {
   return errores;
 }
 
+// nombre máx. 100 y mensaje máx. 500, como en contacto.js de la EP1.
+// El trim() es para que no pase un nombre o mensaje con puros espacios
 export function validarContacto(datos) {
   const errores = {};
   if (datos.nombre.trim() === '' || datos.nombre.length > 100) {

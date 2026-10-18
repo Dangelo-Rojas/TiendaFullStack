@@ -7,12 +7,18 @@ import { agruparCarrito, formatPrecio } from '../utils/carrito';
 export default function Carrito() {
   const { carrito, total, agregar, quitar, vaciar } = useCarrito();
   const [compraConfirmada, setCompraConfirmada] = useState(false);
+
+  // el carrito guarda ids repetidos; para la lista los juntamos en una fila por propiedad
   const items = agruparCarrito(carrito, productos);
 
+  // no hay backend ni pago real: finalizar solo vacía el carrito y muestra la confirmación
   function finalizarCompra() {
     vaciar();
     setCompraConfirmada(true);
   }
+
+  // La página tiene 3 estados posibles (compra confirmada, vacío y con productos).
+  // Con returns tempranos queda más claro que anidando ternarios
 
   if (compraConfirmada) {
     return (
@@ -45,6 +51,7 @@ export default function Carrito() {
         <div className="col-12 col-lg-8">
           {items.map(({ producto, cantidad, subtotal }) => (
             <div className="item-carrito d-flex align-items-center gap-3" key={producto.id}>
+              {/* alt vacío porque el nombre ya aparece al lado */}
               <img src={producto.imagen} alt="" />
 
               <div className="flex-grow-1">
@@ -54,11 +61,13 @@ export default function Carrito() {
                 <p className="mb-0 small text-secondary">{producto.precio} c/u</p>
               </div>
 
-            <div className="contador" role="group" aria-label={`Cantidad de ${producto.nombre}`}>
-              <button className="contador__boton" onClick={() => quitar(producto.id)} aria-label="Quitar uno">−</button>
-              <span className="contador__valor" aria-live="polite">{cantidad}</span>
-              <button className="contador__boton" onClick={() => agregar(producto.id)} aria-label="Agregar uno">+</button>
-            </div>
+              {/* − y + reutilizan quitar/agregar del Context; el total y el contador del navbar se actualizan solos.
+                  aria-live hace que un lector de pantalla lea la cantidad nueva */}
+              <div className="contador" role="group" aria-label={`Cantidad de ${producto.nombre}`}>
+                <button className="contador__boton" onClick={() => quitar(producto.id)} aria-label="Quitar uno">−</button>
+                <span className="contador__valor" aria-live="polite">{cantidad}</span>
+                <button className="contador__boton" onClick={() => agregar(producto.id)} aria-label="Agregar uno">+</button>
+              </div>
 
               <p className="mb-0 text-end item-carrito__subtotal">{formatPrecio(subtotal)}</p>
             </div>
@@ -69,7 +78,7 @@ export default function Carrito() {
           </button>
         </div>
 
-        {/* Resumen */}
+        {/* Resumen: queda fijo al bajar (position: sticky en .resumen-carrito) */}
         <div className="col-12 col-lg-4">
           <aside className="resumen-carrito">
             <h2 className="h4 mb-3">Resumen</h2>
