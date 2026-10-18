@@ -1,0 +1,530 @@
+/*
+  Estilos propios de Casas Embrujadas, encima de Bootstrap.
+  Casi todo se hace cambiando las variables CSS de Bootstrap (--bs-...) en vez de pelear con sus clases.
+  Colores base (los mismos de la EP1):
+    #14101a  fondo
+    #24122e  morado del navbar y footer
+    #1a1322 y #1e1626  cajas y tarjetas
+    #3a2647  bordes
+    #eae6f0  texto, #b9aec8 texto secundario
+    #ff7a1a  naranjo
+*/
+
+/* ==== Paleta y tipografía base ==== */
+
+/* data-bs-theme="dark" está en index.html; acá cambiamos los colores que Bootstrap trae para ese modo */
+[data-bs-theme="dark"] {
+  --bs-body-bg: #14101a;
+  --bs-body-color: #eae6f0;
+  --bs-body-font-family: Georgia, 'Times New Roman', serif;
+  --bs-secondary-color: #b9aec8;
+  --bs-border-color: #3a2647;
+  --bs-link-color-rgb: 255, 122, 26;
+  --bs-link-hover-color-rgb: 255, 154, 77;
+}
+
+/* fuente "de imprenta antigua" para títulos, botones y logo (se carga en index.html) */
+:root {
+  --fuente-titulos: 'IM Fell English', Georgia, serif;
+}
+h1, h2, h3, .h1, .h2, .h3, .h4, .h5, .display-6,
+.navbar-brand, .card-title {
+  font-family: var(--fuente-titulos);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+/* los h1 en naranjo, como .titulo-seccion en la EP1 */
+h1, .h1 {
+  color: #ff7a1a;
+}
+
+/* Georgia y IM Fell usan números "antiguos" (el 0 parece una o), se ven raros en precios.
+   Para los números usamos Palatino, que viene con Windows */
+.precio-destacado,
+.precio-tarjeta,
+.item-carrito__subtotal,
+.contador__valor,
+.linea-tiempo__anio {
+  font-family: 'Palatino Linotype', 'Book Antiqua', 'Times New Roman', serif;
+  font-variant-numeric: lining-nums;
+}
+
+/* ==== Navbar ==== */
+
+/* !important porque bg-dark de Bootstrap también lo usa */
+.bg-dark {
+  background-color: #24122e !important;
+}
+.navbar {
+  border-bottom: 2px solid #ff7a1a;
+}
+.navbar-brand {
+  color: #ff7a1a !important;
+  font-weight: bold;
+}
+.navbar .nav-link.active,
+.navbar .nav-link:hover {
+  color: #ff7a1a !important;
+}
+
+/* Menú en celular. Como lo abre React (clase .show) y no el JS de Bootstrap,
+   la animación la hacemos nosotros: crece de max-height 0 a 400px.
+   visibility: hidden es para que no se pueda llegar a los enlaces con Tab estando cerrado */
+@media (max-width: 991.98px) {
+  .navbar-collapse.collapse {
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    transition: max-height 0.35s ease, visibility 0s linear 0.35s;
+  }
+  .navbar-collapse.collapse.show {
+    max-height: 400px;
+    visibility: visible;
+    transition: max-height 0.35s ease, visibility 0s;
+  }
+}
+
+/* ==== Botones ==== */
+
+.btn {
+  font-family: var(--fuente-titulos);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  border-radius: 2px;
+  --bs-btn-padding-x: 1.1rem;
+  transition: color 0.2s, background-color 0.2s, border-color 0.2s,
+              box-shadow 0.25s, outline-offset 0.25s;
+}
+
+/* el botón principal: usamos btn-warning de Bootstrap pero en naranjo en vez de amarillo */
+.btn-warning {
+  --bs-btn-bg: #ff7a1a;
+  --bs-btn-border-color: #ff7a1a;
+  --bs-btn-color: #14101a;
+  --bs-btn-hover-bg: #ff9a4d;
+  --bs-btn-hover-border-color: #ff9a4d;
+  --bs-btn-hover-color: #14101a;
+  --bs-btn-active-bg: #e8650a;
+  --bs-btn-active-border-color: #e8650a;
+}
+.btn-warning:hover {
+  box-shadow: 0 0 18px rgba(255, 122, 26, 0.45);
+}
+/* "marco" fino alrededor de los botones grandes (los chicos del navbar no lo llevan) */
+.btn-warning:not(.btn-sm) {
+  outline: 1px solid rgba(255, 122, 26, 0.55);
+  outline-offset: 3px;
+}
+.btn-warning:not(.btn-sm):hover {
+  outline-offset: 5px;
+}
+
+/* botones secundarios: transparentes, borde lavanda y naranjo al pasar el mouse.
+   outline-dark se veía negro sobre negro en modo oscuro, por eso también se cambia */
+.btn-outline-light,
+.btn-outline-dark {
+  --bs-btn-color: #eae6f0;
+  --bs-btn-border-color: #8a7a9c;
+  --bs-btn-bg: transparent;
+  --bs-btn-hover-color: #ff7a1a;
+  --bs-btn-hover-bg: rgba(255, 122, 26, 0.08);
+  --bs-btn-hover-border-color: #ff7a1a;
+  --bs-btn-active-color: #ff7a1a;
+  --bs-btn-active-bg: rgba(255, 122, 26, 0.15);
+  --bs-btn-active-border-color: #ff7a1a;
+}
+
+/* contorno blanco cuando se navega con teclado */
+.btn:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+  box-shadow: none;
+}
+
+/* .btn-enlace: los "botones" que en realidad son enlaces (Ver detalle, Ver propiedades...).
+   Texto con una línea abajo que se alarga al pasar el mouse; la línea es el ::after */
+.btn-enlace {
+  display: inline-block;
+  position: relative;
+  padding: 0.25rem 0 0.45rem;
+  font-family: var(--fuente-titulos);
+  font-size: 1.4rem;
+  color: #ff7a1a;
+  text-decoration: none;
+  background: none;
+  border: 0;
+  cursor: pointer; /* por si se usa en un <button>, como "Vaciar carrito" */
+}
+.btn-enlace::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40%;
+  height: 1px;
+  background: currentColor; /* toma el color del texto, así cambia junto con él */
+  transition: width 0.35s ease;
+}
+.btn-enlace:hover,
+.btn-enlace:focus-visible {
+  color: #ff9a4d;
+}
+.btn-enlace:hover::after,
+.btn-enlace:focus-visible::after {
+  width: 100%;
+}
+.btn-enlace:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 4px;
+}
+.btn-enlace.secundario {
+  color: #eae6f0;
+}
+.btn-enlace.secundario:hover {
+  color: #ff7a1a;
+}
+.btn-enlace.chico {
+  font-size: 1.1rem;
+}
+
+/* ==== Formularios ==== */
+
+/* el foco de Bootstrap es azul, lo dejamos naranjo. Si el campo tiene error el brillo sigue rojo */
+.form-control:focus,
+.form-select:focus {
+  border-color: #ff7a1a;
+  box-shadow: 0 0 0 0.2rem rgba(255, 122, 26, 0.25);
+}
+.form-control.is-invalid:focus,
+.form-select.is-invalid:focus {
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.3);
+}
+
+/* tarjetas de Bootstrap (formularios y blogs) un poco más claras que el fondo */
+.card {
+  --bs-card-bg: #1e1626;
+  --bs-card-border-color: #3a2647;
+}
+
+/* ==== Home ==== */
+
+/* la foto de fondo con un degradado oscuro hacia la izquierda, donde va el texto */
+.hero-home {
+  min-height: 75vh;
+  display: flex;
+  align-items: center;
+  background:
+    linear-gradient(90deg, rgba(20, 16, 26, 0.96) 0%, rgba(20, 16, 26, 0.8) 40%, rgba(20, 16, 26, 0.15) 100%),
+    url('/img/hero-mansion.jpg') center / cover;
+}
+.hero-home h1 {
+  font-size: clamp(2.6rem, 6vw, 4.8rem); /* crece con la pantalla pero con mínimo y máximo */
+  line-height: 1.05;
+  max-width: 11ch;
+}
+.hero-home p {
+  max-width: 40ch;
+  font-size: 1.15rem;
+  color: #cfc7db;
+}
+/* el texto del hero aparece suave al cargar, solo si la persona no desactivó las animaciones */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-home .contenido {
+    animation: aparecer 1.4s ease-out both;
+  }
+}
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.propiedad-mes {
+  background: #1a1322;
+  border-top: 1px solid #3a2647;
+  border-bottom: 1px solid #3a2647;
+}
+.propiedad-mes img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.55);
+}
+
+.caso-reciente {
+  color: inherit;
+  padding: 1rem;
+  background: #1a1322;
+  border-left: 3px solid #ff7a1a;
+}
+.caso-reciente:hover h3 {
+  color: #ff7a1a;
+}
+.caso-reciente img {
+  width: 120px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+/* "ficha" con ubicación y precio (Home y Detalle) */
+.ficha dt {
+  color: #b9aec8;
+  font-weight: normal;
+  font-size: 0.9rem;
+}
+.ficha dd {
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+}
+/* va con .ficha delante porque si no ".ficha dd" le ganaba y el precio quedaba chico */
+.ficha .precio-destacado,
+.precio-destacado {
+  font-size: 1.2rem;
+  color: #ff7a1a;
+}
+
+/* ==== Catálogo y tarjetas de propiedad ==== */
+
+.cabecera-catalogo {
+  background: linear-gradient(180deg, #24122e 0%, #14101a 100%);
+  border-bottom: 1px solid #3a2647;
+}
+
+.tarjeta-propiedad {
+  display: flex;
+  flex-direction: column;
+  background: #1e1626;
+  border: 1px solid #3a2647;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.tarjeta-propiedad:hover {
+  border-color: #ff7a1a;
+}
+/* overflow: hidden para que el zoom de la foto no se salga de la tarjeta */
+.tarjeta-propiedad__imagen {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+.tarjeta-propiedad__imagen img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.tarjeta-propiedad:hover .tarjeta-propiedad__imagen img {
+  transform: scale(1.05);
+}
+/* la ubicación va encima de la foto, con sombra degradada para que se lea */
+.tarjeta-propiedad__ubicacion {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 2.5rem 0.9rem 0.6rem;
+  background: linear-gradient(transparent, rgba(20, 16, 26, 0.92));
+  color: #eae6f0;
+  font-size: 0.9rem;
+}
+.precio-tarjeta {
+  font-size: 1.5rem;
+  color: #ff7a1a;
+}
+
+/* ==== Detalle de propiedad ==== */
+
+.detalle-imagen {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  max-height: 460px;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.55);
+}
+/* las miniaturas no activas quedan medio transparentes; la elegida, con borde naranjo */
+.detalle-miniatura {
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  background: none;
+  opacity: 0.6;
+  transition: opacity 0.2s, border-color 0.2s;
+}
+.detalle-miniatura img {
+  width: 90px;
+  height: 68px;
+  object-fit: cover;
+  border-radius: 2px;
+  display: block;
+}
+.detalle-miniatura:hover,
+.detalle-miniatura.activa {
+  opacity: 1;
+}
+.detalle-miniatura.activa {
+  border-color: #ff7a1a;
+}
+.detalle-miniatura:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* ==== Carrito ==== */
+
+/* flex-wrap para que en celular la fila se reparta en dos líneas en vez de apretarse */
+.item-carrito {
+  flex-wrap: wrap;
+  padding: 1rem 0;
+  border-bottom: 1px solid #3a2647;
+}
+.item-carrito img {
+  width: 96px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+.item-carrito__nombre {
+  font-family: var(--fuente-titulos);
+  font-size: 1.25rem;
+  color: #eae6f0;
+  text-decoration: none;
+}
+.item-carrito__nombre:hover {
+  color: #ff7a1a;
+}
+.item-carrito__subtotal {
+  min-width: 9rem;
+  font-size: 1.1rem;
+}
+/* sticky: el resumen se queda visible al hacer scroll, dentro de su columna */
+.resumen-carrito {
+  position: sticky;
+  top: 1.5rem;
+  padding: 1.5rem;
+  background: #1a1322;
+  border: 1px solid #3a2647;
+  border-radius: 6px;
+}
+
+/* contador − 1 + en forma de cápsula */
+.contador {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.1rem;
+  padding: 0.1rem;
+  background: #1a1322;
+  border: 1px solid #3a2647;
+  border-radius: 999px;
+}
+.contador__boton {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #eae6f0;
+  font-size: 0.9rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+.contador__boton:hover {
+  background: rgba(255, 122, 26, 0.15);
+  color: #ff7a1a;
+}
+.contador__boton:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 1px;
+}
+.contador__valor {
+  min-width: 1.25rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* ==== Nosotros: línea de tiempo ==== */
+
+.linea-tiempo {
+  margin-left: 0.5rem;
+  padding-left: 1.75rem;
+  border-left: 2px solid #3a2647;
+}
+.linea-tiempo li {
+  position: relative;
+  max-width: 60ch;
+  padding-bottom: 1.75rem;
+}
+.linea-tiempo li:last-child {
+  padding-bottom: 0;
+}
+/* el circulito naranjo de cada hito, centrado sobre la línea vertical */
+.linea-tiempo li::before {
+  content: '';
+  position: absolute;
+  left: calc(-1.75rem - 7px);
+  top: 0.5rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #14101a;
+  border: 2px solid #ff7a1a;
+}
+.linea-tiempo__anio {
+  display: block;
+  font-size: 1.4rem;
+  color: #ff7a1a;
+}
+.nota-proyecto {
+  padding: 1.5rem;
+  background: #1a1322;
+  border-left: 3px solid #ff7a1a;
+}
+
+/* ==== Footer ==== */
+
+.pie {
+  background: #24122e;
+  border-top: 2px solid #ff7a1a;
+}
+.pie__marca {
+  font-family: var(--fuente-titulos);
+  font-size: 1.5rem;
+  color: #ff7a1a;
+}
+.pie__titulo {
+  font-family: var(--fuente-titulos);
+  font-size: 1.15rem;
+  color: #eae6f0;
+  margin-bottom: 0.75rem;
+}
+.pie li {
+  margin-bottom: 0.35rem;
+}
+.pie a {
+  color: #cfc7db;
+  text-decoration: none;
+}
+.pie a:hover {
+  color: #ff7a1a;
+}
+.pie hr {
+  border-color: #3a2647;
+  opacity: 1;
+}
+
+/* ==== Menos movimiento ==== */
+
+/* si la persona tiene desactivadas las animaciones en su sistema, las apagamos */
+@media (prefers-reduced-motion: reduce) {
+  .navbar-collapse.collapse,
+  .tarjeta-propiedad__imagen img,
+  .btn-enlace::after {
+    transition: none;
+  }
+}

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Casas Embrujadas | Registro</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <header class="encabezado">
+    <div class="contenedor barra-navegacion">
+      <a href="index.html" class="logo">Casas Embrujadas</a>
+      <nav>
+        <ul class="menu-principal">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="productos.html">Propiedades</a></li>
+          <li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="blogs.html">Blogs</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+      <div class="acciones-usuario">
+        <a href="login.html">Iniciar sesión</a>
+        <a href="registro.html">Registrarse</a>
+        <a href="carrito.html" class="carrito">🛒 Carrito (0)</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="contenedor">
+    <h1 class="titulo-seccion">Crear una cuenta</h1>
+
+    <form class="formulario" id="form-registro" action="#" method="post" novalidate>
+
+      <div class="campo">
+        <label for="nombre-completo">Nombre completo</label>
+        <input type="text" id="nombre-completo" name="nombre-completo" maxlength="50" placeholder="Ej: María González">
+        <span class="error" id="error-nombre-completo"></span>
+      </div>
+
+      <div class="campo">
+        <label for="correo">Correo electrónico</label>
+        <input type="email" id="correo" name="correo" maxlength="100" placeholder="ejemplo@duoc.cl">
+        <span class="error" id="error-correo"></span>
+      </div>
+
+      <div class="campo">
+        <label for="confirmar-correo">Confirmar correo</label>
+        <input type="email" id="confirmar-correo" name="confirmar-correo" maxlength="100" placeholder="Repite tu correo">
+        <span class="error" id="error-confirmar-correo"></span>
+      </div>
+
+      <div class="campo">
+        <label for="contrasena">Contraseña</label>
+        <input type="password" id="contrasena" name="contrasena" minlength="4" maxlength="10" placeholder="Entre 4 y 10 caracteres">
+        <span class="error" id="error-contrasena"></span>
+      </div>
+
+      <div class="campo">
+        <label for="confirmar-contrasena">Confirmar contraseña</label>
+        <input type="password" id="confirmar-contrasena" name="confirmar-contrasena" minlength="4" maxlength="10" placeholder="Repite tu contraseña">
+        <span class="error" id="error-confirmar-contrasena"></span>
+      </div>
+
+
+      <div class="campo">
+        <label for="telefono">Teléfono (opcional)</label>
+        <input type="tel" id="telefono" name="telefono" placeholder="+56 9 1234 5678">
+      </div>
+
+
+      <div class="campo-doble">
+        <div class="campo">
+          <label for="region">Región</label>
+          <select id="region" name="region">
+            <option value="">-- Seleccione la región --</option>
+            <option value="metropolitana">Región Metropolitana de Santiago</option>
+            <option value="araucania">Región de la Araucanía</option>
+            <option value="nuble">Región de Ñuble</option>
+          </select>
+          <span class="error" id="error-region"></span>
+        </div>
+
+        <div class="campo">
+          <label for="comuna">Comuna</label>
+
+          <select id="comuna" name="comuna">
+            <option value="">-- Primero seleccione una región --</option>
+          </select>
+          <span class="error" id="error-comuna"></span>
+        </div>
+      </div>
+
+      <button type="submit" class="boton" style="width:100%; margin-top:10px;">Registrar</button>
+    </form>
+  </main>
+
+  <footer class="pie-pagina">
+    <div class="contenedor">
+      <p> Casas Embrujadas — Propiedades con historia desde 1899</p>
+      <p>&copy; 2026 Casas Embrujadas. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="scripts/validaciones.js"></script>
+  <script src="scripts/registro.js"></script>
+</body>
+</html>

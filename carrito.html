@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Casas Embrujadas | Carrito</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <header class="encabezado">
+    <div class="contenedor barra-navegacion">
+      <a href="index.html" class="logo">Casas Embrujadas</a>
+      <nav>
+        <ul class="menu-principal">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="productos.html">Propiedades</a></li>
+          <li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="blogs.html">Blogs</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+      <div class="acciones-usuario">
+        <a href="login.html">Iniciar sesión</a>
+        <a href="registro.html">Registrarse</a>
+        <a href="carrito.html" class="carrito">🛒 Carrito (0)</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="contenedor">
+    <h1 class="titulo-seccion">Tu carrito</h1>
+
+    <div id="carrito-vacio" style="display:none;">
+      <p>Tu carrito está vacío... por ahora.</p>
+      <a href="productos.html" class="boton">Ver propiedades</a>
+    </div>
+
+    <div id="lista-carrito"></div>
+
+    <div id="carrito-resumen" style="display:none; margin-top:20px;">
+      <p class="precio-grande" id="carrito-total"></p>
+      <button class="boton" type="button" id="btn-vaciar">Vaciar carrito</button>
+    </div>
+  </main>
+
+  <footer class="pie-pagina">
+    <div class="contenedor">
+      <p>Casas Embrujadas — Propiedades con historia desde 1899</p>
+      <p>&copy; 2026 Casas Embrujadas. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="scripts/productos-data.js"></script>
+  <script src="scripts/carrito.js"></script>
+</body>
+</html>
