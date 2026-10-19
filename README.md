@@ -179,6 +179,7 @@ frontend/
 ## 👥 Equipo
 
 - **Dangelo Rojas**
+- **Dinko Ocampo Zlosilo**
 
 ---
 
