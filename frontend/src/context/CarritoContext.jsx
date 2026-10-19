@@ -10,7 +10,8 @@ const CarritoContext = createContext(null);
 // Si en localStorage no hay nada (null) o el JSON viene malo, partimos con el carrito vacío
 function leerCarritoGuardado() {
   try {
-    return JSON.parse(localStorage.getItem('carrito')) || [];
+    const guardado = JSON.parse(localStorage.getItem('carrito'));
+    return Array.isArray(guardado) ? guardado : [];
   } catch {
     return [];
   }
